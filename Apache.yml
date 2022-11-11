@@ -1,0 +1,20 @@
+---
+- name: configuring Apache
+  hosts: linux1
+  tasks:
+  - name: Install the package
+    yum:
+     name: httpd
+     state: present
+
+  - name: creating index file
+    copy:
+     content: "Hello from Ansible Automation!"
+     dest: /var/www/html/index.html
+
+
+  - name: starting the service
+    service:
+     name: httpd
+     state: started
+
